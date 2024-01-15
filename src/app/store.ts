@@ -1,5 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import auth from "../features/auth/authSlice";
+import consumers from "../features/consumers/consumersSlice";
 import { api } from "./services/api";
 import { listenerMiddleware } from "../middlware/auth";
 
@@ -7,6 +8,7 @@ export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
     auth,
+    consumers,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
