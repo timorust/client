@@ -7,6 +7,7 @@ import { store } from './app/store'
 import { Auth } from './features/auth/auth'
 import './index.css'
 import { AddConsumer } from './pages/add-consumer'
+import { Consumer } from './pages/consumer'
 import { Consumers } from './pages/consumers'
 import { Login } from './pages/login'
 import { Register } from './pages/register'
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
 	{
 		path: `${Paths.status}/:status`,
 		element: <Status />,
+	},
+	{
+		path: `${Paths.consumer}/:id`,
+		element: <Consumer />,
 	},
 ])
 

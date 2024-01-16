@@ -9,7 +9,7 @@ export const consumersApi = api.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
-		getConsumer: builder.query<Consumer[], string>({
+		getConsumer: builder.query<Consumer, string>({
 			query: id => ({
 				url: `/consumers/${id}`,
 				method: 'GET',
