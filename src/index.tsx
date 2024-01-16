@@ -10,6 +10,7 @@ import { AddConsumer } from './pages/add-consumer'
 import { Consumers } from './pages/consumers'
 import { Login } from './pages/login'
 import { Register } from './pages/register'
+import { Status } from './pages/status'
 import { Paths } from './paths'
 import reportWebVitals from './reportWebVitals'
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
 	{
 		path: Paths.addConsumer,
 		element: <AddConsumer />,
+	},
+	{
+		path: `${Paths.status}/:status`,
+		element: <Status />,
 	},
 ])
 
