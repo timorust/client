@@ -9,6 +9,7 @@ import './index.css'
 import { AddConsumer } from './pages/add-consumer'
 import { Consumer } from './pages/consumer'
 import { Consumers } from './pages/consumers'
+import { EditConsumer } from './pages/edit-consumer'
 import { Login } from './pages/login'
 import { Register } from './pages/register'
 import { Status } from './pages/status'
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
 	{
 		path: `${Paths.consumer}/:id`,
 		element: <Consumer />,
+	},
+	{
+		path: `${Paths.editConsumer}/:id`,
+		element: <EditConsumer />,
 	},
 ])
 

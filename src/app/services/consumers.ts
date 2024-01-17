@@ -19,6 +19,7 @@ export const consumersApi = api.injectEndpoints({
 			query: consumer => ({
 				url: `/consumers/edit/${consumer.id}`,
 				method: 'PUT',
+				body: consumer,
 			}),
 		}),
 		removeConsumer: builder.mutation<string, string>({
