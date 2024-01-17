@@ -2,7 +2,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { Descriptions, Divider, Modal, Space } from 'antd'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, Navigate, useNavigation, useParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import {
 	useGetConsumerQuery,
 	useRemoveConsumerMutation,
@@ -11,9 +11,11 @@ import { CustomButton } from '../../components/custom-button'
 import { ErrorMessage } from '../../components/error-message'
 import { Layout } from '../../components/layout'
 import { selectUser } from '../../features/auth/authSlice'
+import { Paths } from '../../paths'
+import { isErrorWithMessage } from '../../utils/is_error_with_message'
 
 export const Consumer = () => {
-	const navigate = useNavigation()
+	const navigate = useNavigate()
 	const [error, setError] = useState('')
 	const params = useParams<{ id: string }>()
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -33,6 +35,22 @@ export const Consumer = () => {
 	}
 	const hideModal = () => {
 		setIsModalOpen(false)
+	}
+
+	const handleDeleteUser = async () => {
+		hideModal()
+
+		try {
+			await removeConsumer(data.id).unwrap()
+
+			navigate(`${Paths.status}/deleted`)
+		} catch (err) {
+			const maybeError = isErrorWithMessage(err)
+
+			if (maybeError) {
+				setError(err.data.message)
+			} else setError('Unknown error')
+		}
 	}
 
 	return (
@@ -80,7 +98,7 @@ export const Consumer = () => {
 			<Modal
 				title='Confirm deletion'
 				open={isModalOpen}
-				onOk={() => null}
+				onOk={handleDeleteUser}
 				onCancel={hideModal}
 				okText='Confirm'
 				cancelText='Cancel'
